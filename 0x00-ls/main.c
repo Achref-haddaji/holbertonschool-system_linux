@@ -6,7 +6,7 @@
 #include <errno.h>
 #include <stdlib.h>
 
-void _ls(const char *dir,int op_a,int op_l)
+void hls(const char *dir,int op_a,int op_l)
 {
 	//Here we will list the directory
 	struct dirent *d;
@@ -41,7 +41,7 @@ int main(int argc, const char *argv[])
 {
 	if (argc == 1)
 	{
-		_ls(".",0,0);
+		hls(".",0,0);
 	}
 	else if (argc == 2)
 	{
@@ -60,7 +60,7 @@ int main(int argc, const char *argv[])
 				}
 				p++;
 			}
-			_ls(".",op_a,op_l);
+			hls(".",op_a,op_l);
 		}
 	}
 	return 0;
