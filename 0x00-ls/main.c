@@ -35,7 +35,7 @@ int main(int argc, const char *argv[])
 {
 	if (argc == 1)
 	{
-		_ls(".",0,0);
+		hls(".",0,0);
 	}
 	else if (argc == 2)
 	{
@@ -54,7 +54,7 @@ int main(int argc, const char *argv[])
 				}
 				p++;
 			}
-			_ls(".",op_a,op_l);
+			hls(".",op_a,op_l);
 		}
 	}
 	return 0;
