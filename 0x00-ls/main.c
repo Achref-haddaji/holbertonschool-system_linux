@@ -1,6 +1,12 @@
-#include "c_ls.h"
+//Used for basic input/output stream
+#include <stdio.h>
+//Used for handling directory files
+#include <dirent.h>
+//For EXIT codes and error handling
+#include <errno.h>
+#include <stdlib.h>
 
-void hls(const char *dir,int op_a,int op_l)
+void _ls(const char *dir,int op_a,int op_l)
 {
 	//Here we will list the directory
 	struct dirent *d;
@@ -35,7 +41,7 @@ int main(int argc, const char *argv[])
 {
 	if (argc == 1)
 	{
-		hls(".",0,0);
+		_ls(".",0,0);
 	}
 	else if (argc == 2)
 	{
@@ -54,7 +60,7 @@ int main(int argc, const char *argv[])
 				}
 				p++;
 			}
-			hls(".",op_a,op_l);
+			_ls(".",op_a,op_l);
 		}
 	}
 	return 0;
