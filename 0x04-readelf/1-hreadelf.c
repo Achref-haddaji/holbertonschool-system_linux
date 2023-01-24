@@ -7,7 +7,7 @@
  * @argc: number of args
  * @argv: args  passed to program
  * @env:  the environment
- * Return: 0 in success , -1 in fail
+ * Return: -1 in fail and 0 in success
  */
 int main(int argc, char **argv, char **env)
 {
