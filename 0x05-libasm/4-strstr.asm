@@ -1,10 +1,10 @@
 BITS 64
 
-global asm_strstr				; export to the gcc link
+global asm_strstr
 
 asm_strstr:
-	push rbp					; push the base
-	mov rbp, rsp				; start new base
+	push rbp
+	mov rbp, rsp
 
     mov R9, 0h
 asm_loop:
@@ -41,13 +41,13 @@ check_correct:
     jmp asm_loop
 
 found_end:
-	mov rax, rdi				    ; pass null
-	mov rsp, rbp				; return to old base
-	pop rbp						; pop to the call base
+	mov rax, rdi
+	mov rsp, rbp
+	pop rbp
 	ret
 
 null_end:
-	mov rax, 0h				    ; pass null
-	mov rsp, rbp				; return to old base
-	pop rbp						; pop to the call base
+	mov rax, 0h
+	mov rsp, rbp
+	pop rbp
 	ret
