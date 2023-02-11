@@ -1,29 +1,25 @@
-section .data
+BITS 64
 
-section .text
-    global  asm_memcpy
+global asm_memcpy				; export to the gcc link
 
 asm_memcpy:
-    ; Save the arguments on the stack
-    push    rbp
-    mov     rbp, rsp
-    sub     rsp, 16
-    mov     [rbp-8], rdi
-    mov     [rbp-16], rsi
-    mov     [rbp-24], rcx
+	push rbp					; push the base
+	mov rbp, rsp				; start new base
 
-    ; Load the source and destination addresses into rsi and rdi respectively
-    mov     rsi, [rbp-16]
-    mov     rdi, [rbp-8]
+	mov R9, 0h					; set counter to 0
+asm_loop:
 
-    ; Load the length into rcx
-    mov     rcx, [rbp-24]
+	cmp R9, rdx
+	je asm_end
 
-    ; Start copying the bytes
-    cld
-    rep movsb
+	mov bl, [rsi + R9]
+	mov [rdi + R9], bl
 
-    ; Restore the stack pointer and return
-    mov     rsp, rbp
-    pop     rbp
-    ret
+
+
+	inc R9						; counter += 1
+	jmp asm_loop				; repeat
+asm_end:
+	mov rsp, rbp				; return to old base
+	pop rbp 					; pop to the call base
+	ret
