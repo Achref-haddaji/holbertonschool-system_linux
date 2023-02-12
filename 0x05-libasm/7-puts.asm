@@ -1,28 +1,29 @@
 BITS 64
-
-global asm_puts               ; export to the gcc link
+global asm_puts
 extern asm_strlen
+section .text
+   asm_puts:
+         push rbp
+         mov rbp, rsp
 
+         ; Save the address of the string in rdi
+         push rdi
+         call asm_strlen
+         pop rdi
 
-asm_puts:
-	push rbp                    ; push the base
-	mov rbp, rsp                ; start new base
+         ; Save the length of the string in rdx
+         mov rdx, rax
 
-	push rdi
-	push rsi
-	push rdx
+         ; Prepare the arguments for the write syscall
+         mov rax , 1        ; write to stdout
+         mov rsi, rdi       ; buffer address
+         mov rdi , 1        ; file descriptor
 
-	call asm_strlen
+         ; Invoke the write syscall
+         syscall
 
-	mov rdx, rax
-	mov rax, 1
-	mov rsi, rdi
-	mov rdi, 1
-	syscall
+         mov rsp , rbp
+         pop rbp
 
-	pop rdi
-	pop rsi
-	pop rdx
-	mov rsp, rbp
-	pop rbp
-	ret
+         ret
+
