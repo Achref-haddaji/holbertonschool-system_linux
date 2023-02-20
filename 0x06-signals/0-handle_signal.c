@@ -1,4 +1,8 @@
 #include <signal.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <signal.h>
+#include <stdio.h>
 
 void sigint_handler(int signum)
 {
