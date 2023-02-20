@@ -20,8 +20,8 @@ int trace_signal_sender(void)
 {
 	struct sigaction act;
 
-	act.sa_handler = handler;
-	.sa_flags = SA_SIGINFO;
+act.sa_handler = handler;
+.sa_flags = SA_SIGINFO;
 
 	if (sigaction(SIGQUIT, &act, NULL) < 0)
 		return (-1);
