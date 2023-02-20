@@ -1,30 +1,32 @@
-#include <signal.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <signal.h>
+#include <stdio.h>
+#include "signals.h"
+#define unused __attribute__((unused))
 
 /**
- * handler - handle the SIGQUIT signal
- * @signum: signal number
+ * handler - msg handlerS
+ *@info: pointer of stracter sa_sigaction
+ *@unused: __attribute__((unused))
  */
-void handler(int signum)
+void handler(int sig unused, siginfo_t *info, void *ucontext unused)
 {
-printf("SIGQUIT sent by %d\n", signum);
+	printf("SIGQUIT sent by %i\n", info->si_pid);
+	fflush(stdout);
 }
 
 /**
- * trace_signal_sender - trace signal sender
- * Return: 0 on success, -1 on error
+ * trace_signal_sender - catch the interprtur ctr-\
+ *
+ * Return:0 if success or -1 if failure
  */
 int trace_signal_sender(void)
 {
-	struct sigaction act;
+	struct sigaction action;
 
-act.sa_handler = handler;
-.sa_flags = SA_SIGINFO;
+	action.sa_flags = SA_SIGINFO;
+	action.sa_sigaction = handler;
 
-	if (sigaction(SIGQUIT, &act, NULL) < 0)
-		return (-1);
-
-	return (0);
+	return (sigaction(SIGQUIT, &action, NULL));
 }
