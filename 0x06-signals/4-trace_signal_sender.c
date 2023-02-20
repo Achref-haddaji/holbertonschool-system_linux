@@ -9,7 +9,7 @@
  */
 void handler(int signum)
 {
-    printf("SIGQUIT sent by %d\n", signum);
+printf("SIGQUIT sent by %d\n", signum);
 }
 
 /**
@@ -18,13 +18,13 @@ void handler(int signum)
  */
 int trace_signal_sender(void)
 {
-    struct sigaction act;
+	struct sigaction act;
 
-    act.sa_handler = handler;
-    act.sa_flags = SA_SIGINFO;
+	act.sa_handler = handler;
+	.sa_flags = SA_SIGINFO;
 
-    if (sigaction(SIGQUIT, &act, NULL) < 0)
-        return -1;
+	if (sigaction(SIGQUIT, &act, NULL) < 0)
+		return (-1);
 
-    return 0;
+	return (0);
 }
