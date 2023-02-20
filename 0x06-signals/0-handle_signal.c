@@ -18,10 +18,12 @@ void sigint_handler(int signum)
  **/
 int handle_signal(void)
 {
-	if (signal(SIGINT, sigint_handler) == SIG_ERR) /* if an error, return -1 */
+	if (signal(SIGINT, sigint_handler) == SIG_ERR)
+	/* if an error, return -1 */
 	{
 		return (-1);
 	}
 
-	return (0); /* if the signal handler was set successfully, return 0 */
+	return (0);
+	/* if the signal handler was set successfully, return 0 */
 }
