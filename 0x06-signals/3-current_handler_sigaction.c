@@ -1,4 +1,8 @@
 #include <signal.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <signal.h>
+#include <stdio.h>
 
 /**
  * current_handler_sigaction - Retrieves the current handler of SIGINT
