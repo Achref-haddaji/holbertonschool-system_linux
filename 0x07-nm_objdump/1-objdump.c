@@ -11,7 +11,7 @@
  */
 int main(int __attribute__((unused)) argc, char **argv, char **env)
 {
-	char *command[] = {"./objdump", "-s", "-f", "", NULL};  /* Command to execute */
+	char *command[] = {"./objdump", "-s", "-f", "", NULL};
 
 	/* Set the fourth argument of the command to the input file name */
 	command[3] = argv[1];
