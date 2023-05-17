@@ -7,8 +7,8 @@
  */
 void *thread_entry(void *arg)
 {
-	char *message = (char *)arg;
+	char *str = (char *)arg;
 
-	printf("%s\n", message);
+	printf("%s\n", str);
 	pthread_exit(NULL);
 }
