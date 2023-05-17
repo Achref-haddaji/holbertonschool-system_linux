@@ -6,7 +6,7 @@ void init_mutex(void) __attribute__((constructor));
 void destroy_mutex(void) __attribute__((destructor));
 
 /**
- * mutex befor run  program
+ * init_mutex-initalis  a mutex befor run  program
  * Return: EXIT_SUCCESS
  */
 void init_mutex(void)
@@ -18,7 +18,7 @@ void init_mutex(void)
 	}
 }
 /**
- * a mutex after exit program
+ * destroy_mutex-destroy a mutex after exit program
  * Return: EXIT_SUCCESS
  */
 void destroy_mutex(void)
