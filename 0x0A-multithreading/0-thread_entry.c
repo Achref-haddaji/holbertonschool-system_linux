@@ -1,9 +1,14 @@
-#include <stdio.h>
+#include "multithreading.h"
 
+/**
+ * thread_entry -  that will serve as the entry point to a new thread
+ *@arg: holds the address of a string that must be printed
+ * Return: EXIT_SUCCESS
+ */
 void *thread_entry(void *arg)
 {
-char *message = (char *)arg;
+	char *message = (char *)arg;
 
-printf("%s\n", message);
-return (NULL);
+	printf("%s\n", message);
+	pthread_exit(NULL);
 }
